@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/vaughandroid/gol-node/issues"
   },
-  "homepage": "https://github.com/vaughandroid/gol-node#readme"
+  "homepage": "https://github.com/vaughandroid/gol-node#readme",
+  "dependencies": {
+    "yargs": "^16.2.0"
+  }
 }
