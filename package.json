@@ -1,0 +1,22 @@
+{
+  "name": "gol",
+  "version": "0.0.1",
+  "description": "Conway's Game of Life",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"no test specified\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vaughandroid/gol-node.git"
+  },
+  "bin": {
+    "gol": "./index.js"
+  },
+  "author": "Chris Vaughan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vaughandroid/gol-node/issues"
+  },
+  "homepage": "https://github.com/vaughandroid/gol-node#readme"
+}
