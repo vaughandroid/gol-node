@@ -2,7 +2,7 @@
   "name": "gol",
   "version": "0.0.1",
   "description": "Conway's Game of Life",
-  "main": "src/index.js",
+  "main": "src/index.ts",
   "scripts": {
     "test": "echo \"no test specified\""
   },
@@ -21,5 +21,10 @@
   "homepage": "https://github.com/vaughandroid/gol-node#readme",
   "dependencies": {
     "yargs": "^16.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "^14.14.37",
+    "ts-node": "^9.1.1",
+    "typescript": "^4.2.4"
   }
 }
