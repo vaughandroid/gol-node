@@ -139,7 +139,7 @@ describe('World', () => {
   });
 });
 
-describe.skip('Engine', () => {
+describe('Engine', () => {
   describe('Still lifes', () => {
     it('An empty world should not change', () => {
       const engine = new Engine(new World([]));
@@ -164,7 +164,7 @@ describe.skip('Engine', () => {
   });
 
   describe('Oscillators', () => {
-    it('"Blinker" arrangements should have period 2', () => {
+    it('"Blinker"', () => {
       const blockPositionsA: Position[] = [
         {x:0, y:0},
         {x:0, y:1},
@@ -172,6 +172,29 @@ describe.skip('Engine', () => {
       ];
       const blockPositionsB: Position[] = [
         {x:-1, y:1}, {x:0, y:1}, {x:1, y:1},
+      ];
+
+      const engine = new Engine(new World(blockPositionsA));
+
+      engine.nextGeneration();
+
+      expect(engine.currentWorld.livingCellPositions).to.have.deep.members(blockPositionsB);
+
+      engine.nextGeneration();
+
+      expect(engine.currentWorld.livingCellPositions).to.have.deep.members(blockPositionsA);
+    });
+
+    it('"Toad"', () => {
+      const blockPositionsA: Position[] = [
+        {x:1, y:0}, {x:2, y:0}, {x:3, y:0},
+        {x:0, y:1}, {x:1, y:1}, {x:2, y:1},
+      ];
+      const blockPositionsB: Position[] = [
+        {x:2, y:-1},
+        {x:0, y:0}, {x:3, y:0},
+        {x:0, y:1}, {x:3, y:1},
+        {x:1, y:2}
       ];
 
       const engine = new Engine(new World(blockPositionsA));

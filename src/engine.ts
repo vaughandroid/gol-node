@@ -38,10 +38,18 @@ class World {
   }
 
   getCellStatusAt(pos: Position): CellStatus {
-    this.livingCellPositions.forEach(lcPos => {
-      if (lcPos.x === pos.x && lcPos.y === pos.y) return 'live';
-    })
-    return 'dead';
+    const isLive = this.livingCellPositions.some(lcPos => (lcPos.x === pos.x && lcPos.y === pos.y));
+    if (isLive) { return 'live' } else { return 'dead';}
+  }
+
+  countLiveNeighbours(pos: Position): number {
+    return [
+      {x: pos.x-1, y: pos.y-1}, {x: pos.x, y: pos.y-1}, {x: pos.x+1, y: pos.y-1},
+      {x: pos.x-1, y: pos.y}, {x: pos.x+1, y: pos.y},
+      {x: pos.x-1, y: pos.y+1}, {x: pos.x, y: pos.y+1}, {x: pos.x+1, y: pos.y+1},
+    ]
+      .filter(it => this.getCellStatusAt(it) === 'live')
+      .length
   }
 
   activeCellPositions(): Position[] {
@@ -74,6 +82,17 @@ class Engine {
   }
 
   nextGeneration() {
+    const nextGenerationLiveCellPositions: Position[] = [];
+    
+    this.currentWorld.activeCellPositions().forEach(pos => {
+      const cell = new Cell(this.currentWorld.getCellStatusAt(pos));
+      const liveNeighbours = this.currentWorld.countLiveNeighbours(pos);
+      if (cell.getNextStatus(liveNeighbours) === 'live') {
+        nextGenerationLiveCellPositions.push(pos);
+      }
+    });
+
+    this.currentWorld = new World(nextGenerationLiveCellPositions);
   }
 }
 
