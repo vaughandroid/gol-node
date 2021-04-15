@@ -1,5 +1,5 @@
 import {expect} from 'chai';
-import {Position, Cell, World, Engine} from '../src/engine';
+import {Position, Bounds, Cell, World, Engine} from '../src/engine';
 
 describe('Cell', () => {
   describe('Live', () => {
@@ -135,6 +135,46 @@ describe('World', () => {
       ];
 
       expect(world.activeCellPositions()).to.have.deep.members(expectedActiveCells)
+    });
+  });
+
+  describe('Bounds', () => {
+    it('When there are multiple live cells the bounds are the min and max x and y positions', () => {
+      const engine = new Engine(new World([
+        {x:-42, y:-23},
+        {x:55, y:87},
+      ]));
+
+      const bounds = engine.currentWorld.getBounds();
+
+      expect(bounds.left).to.equal(-42);
+      expect(bounds.right).to.equal(55);
+      expect(bounds.top).to.equal(-23);
+      expect(bounds.bottom).to.equal(87);
+    });
+
+    it('When there are no live cells the bounds are all 0', () => {
+      const engine = new Engine(new World([]));
+      
+      const bounds = engine.currentWorld.getBounds();
+      
+      expect(bounds.left).to.equal(0);
+      expect(bounds.right).to.equal(0);
+      expect(bounds.top).to.equal(0);
+      expect(bounds.bottom).to.equal(0);
+    });
+
+    it('When there is one live cell the bounds are the cell position', () => {
+      const engine = new Engine(new World([
+        {x:-34, y:56}
+      ]));
+      
+      const bounds = engine.currentWorld.getBounds();
+      
+      expect(bounds.left).to.equal(-34);
+      expect(bounds.right).to.equal(-34);
+      expect(bounds.top).to.equal(56);
+      expect(bounds.bottom).to.equal(56);
     });
   });
 });

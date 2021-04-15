@@ -30,6 +30,13 @@ interface Position {
   y: number;
 }
 
+interface Bounds {
+  left: number,
+  right: number,
+  top: number,
+  bottom: number
+}
+
 class World {
   livingCellPositions: Position[];
 
@@ -64,6 +71,37 @@ class World {
     });
     return activePositions;
   }
+
+  getBounds(): Bounds {
+    const defaultBounds: Bounds = {
+      left: 0,
+      right: 0,
+      top: 0,
+      bottom: 0
+    };
+
+    const calculatedBounds: Bounds | null = this.livingCellPositions.reduce(
+      (bounds: Bounds | null, pos: Position) => {
+        if (bounds !== null) {
+          bounds.left = Math.min(bounds.left, pos.x);
+          bounds.right = Math.max(bounds.right, pos.x);
+          bounds.top = Math.min(bounds.top, pos.y);
+          bounds.bottom = Math.max(bounds.bottom, pos.y);
+          return bounds;
+        } else {
+          return {
+            left: pos.x,
+            right: pos.x,
+            top: pos.y,
+            bottom: pos.y
+          };
+        }
+      },
+      null
+    );
+
+    return calculatedBounds ?? defaultBounds;
+  }
 }
 
 function addIfNotPresent(array: Position[], ...positions: Position[]) {
@@ -96,4 +134,4 @@ class Engine {
   }
 }
 
-export {Position, Cell, World, Engine};
+export {Position, Bounds, Cell, World, Engine};
