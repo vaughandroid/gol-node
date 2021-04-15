@@ -1,8 +1,11 @@
-// TODO: Can't get this working when I convert to an import as suggested.
-const yargs = require('yargs');
+import yargs = require('yargs');
 
-const options = yargs
-  .option('s', { alias: 'seed', describe: 'Random seed', type: 'integer', demandOption: false, default: 0})
-  .argv;
+const argv = yargs.option('difficulty', {
+  demandOption: true
+}).argv;
 
-console.log(`World seed: ${options.seed}`);
+const argv2 = yargs.options(
+  {'s': { type: 'number', alias: 'seed', describe: 'Random seed', demandOption: false, default: 0 } 
+}).argv;
+
+console.log(`World seed: ${argv2.seed}`);
