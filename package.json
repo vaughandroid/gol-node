@@ -4,6 +4,7 @@
   "description": "Conway's Game of Life",
   "main": "src/index.ts",
   "scripts": {
+    "start": "ts-node .",
     "test": "mocha"
   },
   "repository": {

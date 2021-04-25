@@ -4,7 +4,7 @@
 
 ## Usage
 
-Run with: `npx ts-node .`
+Run with: `npm start`
 
 ## Controls
 
