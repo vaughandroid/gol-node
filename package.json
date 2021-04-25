@@ -21,15 +21,13 @@
   },
   "homepage": "https://github.com/vaughandroid/gol-node#readme",
   "dependencies": {
-    "blessed": "^0.1.81",
-    "yargs": "^16.2.0"
+    "blessed": "^0.1.81"
   },
   "devDependencies": {
     "@types/blessed": "^0.1.17",
     "@types/chai": "^4.2.16",
     "@types/mocha": "^8.2.2",
     "@types/node": "^14.14.37",
-    "@types/yargs": "^16.0.1",
     "chai": "^4.3.4",
     "mocha": "^8.3.2",
     "ts-node": "^9.1.1",
