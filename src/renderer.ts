@@ -1,4 +1,4 @@
-import {World} from './engine';
+import {World} from './world';
 
 class Renderer {
   render(world: World): string {
